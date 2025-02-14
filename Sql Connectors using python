@@ -16,4 +16,5 @@ cnxn = pypyodbc.connect("Driver={SQL Server Native Client 11.0};"
                         "uid=User;pwd=password")
 df = pd.read_sql_query('select * from table', cnxn)
 
-# super simple. 
+# super simple.. if you're new to this... dont forget to close your connections.
+# cnxn.close()  
