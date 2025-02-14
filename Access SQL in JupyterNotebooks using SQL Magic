@@ -1,0 +1,50 @@
+
+#  within Jupyter notebooks or labs
+  
+  !pip install ipython-sql
+  %load_ext sql
+
+# once installed -- create your connector
+
+# using sql lite or other method
+# for this demonstration a locally stored .db file will be our database
+
+    import csv, sqlite3
+
+    con = sqlite3.connect("SQLiteMagic.db")
+    cur = con.cursor()
+
+# our connection is made so no we instantiate SQLmagic command via:0
+    
+    %sql sqlite:///SQLiteMagic.db
+
+# at this point.. we can just run a cell with the command as standard notation.
+# no need for triple quotes like those used in python
+
+within a jupyter notebook cell add your commands: 
+##----------
+%sql
+
+CREATE TABLE INTERNATIONAL_STUDENT_TEST_SCORES (
+	country VARCHAR(50),
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	test_score INT
+);
+INSERT INTO INTERNATIONAL_STUDENT_TEST_SCORES (country, first_name, last_name, test_score)
+VALUES
+('United States', 'Marshall', 'Bernadot', 54)
+....
+
+### add more lines for your database insert command.
+##----------
+
+
+
+## if you want to variables to your sql statements... use : prefix to your python variable
+country = "Canada"
+%sql select * from INTERNATIONAL_STUDENT_TEST_SCORES where country = :country
+                                                                       ## note the prefix ":" on our variable country
+
+
+
