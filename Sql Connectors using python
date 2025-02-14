@@ -1,0 +1,19 @@
+#/// Purpose of code is to connect to sql database on remote host to retrieve data for analysis
+#/// you can form you own connectors, but since I tend to do this regularly 
+#/// why not share it
+
+# import packages so we can instantiate them for use.
+
+import pypyodbc 
+import pandas as pd
+
+# then instantiate our connector to a local db on serverx, pass our creds using pypyodbc with the connect method, then 
+# send our sql data retrieval command (select statement - sql query), ingest the data into a pandas DataFrame for further manipulation.
+
+cnxn = pypyodbc.connect("Driver={SQL Server Native Client 11.0};"
+                        "Server=server_name;"
+                        "Database=db_name;"
+                        "uid=User;pwd=password")
+df = pd.read_sql_query('select * from table', cnxn)
+
+# super simple. 
