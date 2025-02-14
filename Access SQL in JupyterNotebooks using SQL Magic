@@ -46,5 +46,29 @@ country = "Canada"
 %sql select * from INTERNATIONAL_STUDENT_TEST_SCORES where country = :country
                                                                        ## note the prefix ":" on our variable country
 
+## okay great now... 
+## lets assign our variable (example)
+
+test_score_distribution = %sql SELECT test_score as "Test_Score", count(*) as "Frequency" from INTERNATIONAL_STUDENT_TEST_SCORES GROUP BY test_score;
+test_score_distribution
+
+
+## Lets try something harder --- convert our SQL results to dataframe and graph something using seaborn and matplotlib
+
+!pip install seaborn
+!pip install matplotlib
+dataframe = test_score_distribution.DataFrame()
+
+%matplotlib inline
+# uncomment the following line if you get an module error saying seaborn not found
+# !pip install seaborn==0.9.0
+import seaborn
+
+plot = seaborn.barplot(x='Test_Score',y='Frequency', data=dataframe)
+
+##  bar plot is done! 
+
+
+
 
 
